@@ -836,18 +836,20 @@ spec:
           value: "9555"
         resources:
           requests:
-            cpu: 10m
-            memory: 32Mi
+            cpu: 100m
+            memory: 128Mi
           limits:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 300m
+            memory: 256Mi
         readinessProbe:
-          initialDelaySeconds: 20
+          initialDelaySeconds: 45
+          timeoutSeconds: 5
           periodSeconds: 15
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:9555"]
         livenessProbe:
-          initialDelaySeconds: 20
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
           periodSeconds: 15
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:9555"]
